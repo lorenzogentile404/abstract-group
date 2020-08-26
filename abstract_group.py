@@ -14,6 +14,13 @@ class Group(ABC):
     def inverse(self, a):
         pass
     
+    def exponentiation(self, a, n):
+        assert(n > 0)
+        r = self.identity()
+        for i in range(0, n):
+            r = self.binary_operator(r, a)
+        return r
+    
     def check_associative(self, a, b, c):
         return self.binary_operator(self.binary_operator(a, b), c) == self.binary_operator(a, self.binary_operator(b, c))
     
@@ -46,6 +53,8 @@ print("Z_with_addition")
 print(Z_with_addition.identity())
 print(Z_with_addition.binary_operator(a, b))
 print(Z_with_addition.inverse(a))
+print(Z_with_addition.exponentiation(a, 1))
+print(Z_with_addition.exponentiation(a, 10))
 
 # Check properties
 print(Z_with_addition.check_associative(a, b, c))
@@ -74,9 +83,11 @@ print("\nstrings_16_bits")
 print(bin(strings_16_bits.identity()))
 print(bin(strings_16_bits.binary_operator(a, b)))
 print(bin(strings_16_bits.inverse(a)))
+print(bin(strings_16_bits.exponentiation(a, 1)))
+print(bin(strings_16_bits.exponentiation(a, 2))) 
+print(bin(strings_16_bits.exponentiation(a, 3)))
 
 # Check properties
 print(strings_16_bits.check_associative(a, b, c))
 print(strings_16_bits.check_identity(a))
 print(strings_16_bits.check_inverse(a))
-    
